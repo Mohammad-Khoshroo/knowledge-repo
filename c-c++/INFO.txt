@@ -1,0 +1,245 @@
+ if you want to pass an argument by reference, you use & in the function's parameter list.
+void byValue(int x) {
+    x += 10; // changes local copy
+}
+
+void byReference(int &x) {
+    x += 10; // changes original
+}
+
+If you want to pass by reference but not allow modification, use const &:
+
+void printMatrix(const Matrix<int> &mat);
+
+This is super common for performance and safety.
+
+ReturnType operatorOP(const Type& other) const
+Where OP is like +, -, ==, etc.
+
+Matrix& operator=(const Matrix &other) {
+    if (this == &other) return *this;  // self-assignment guard
+    // copy stuff
+    return *this;
+}
+
+
+If you used new, you must use delete.
+If you used new[], you must use delete[].
+If you didn’t use new, do nothing — destructor is clean.
+
+✅ You MUST delete:
+
+    Any T* or T[] that you allocated using new or new[].
+❌ You DO NOT need to delete:
+
+    Local variables
+
+    int, float, bool, etc. (built-in types) that aren't dynamically allocated
+
+    Objects allocated automatically
+
+constexpr in C++ is a keyword that indicates that the value of a variable or the result of a function can be evaluated at compile time.
+
+In short:
+
+    Use constexpr for variables or functions that can be computed during compilation, which can improve performance.
+
+    constexpr guarantees compile-time constantness, unlike const which just means immutable after initialization but might still be computed at runtime.
+
+Example with variable:
+
+constexpr int square(int x) {
+    return x * x;
+}
+
+constexpr int val = square(5);  // computed at compile time
+
+Example with function:
+
+constexpr int factorial(int n) {
+    return n <= 1 ? 1 : (n * factorial(n - 1));
+}
+
+constexpr int f5 = factorial(5); // evaluated at compile time
+
+1. static_cast<T>(expr)
+
+    Safe, compile-time checked conversions.
+
+    Used for well-defined conversions:
+
+        numeric conversions (e.g., int → float)
+
+        pointer upcasts (derived → base)
+
+        enum ↔ integer conversions
+
+    Does not remove const or perform unsafe casts.
+
+Example:
+
+int i = 10;
+double d = static_cast<double>(i);  // int → double
+
+2. dynamic_cast<T>(expr)
+
+    Used mainly for downcasting pointers or references in polymorphic hierarchies (classes with virtual functions).
+
+    Performs runtime type check and returns nullptr if cast fails (for pointers).
+
+    Requires RTTI enabled.
+
+Example:
+
+Base* basePtr = new Derived();
+Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
+if (derivedPtr) {
+    // safe to use derivedPtr
+}
+
+3. const_cast<T>(expr)
+
+    Removes or adds const or volatile qualifiers.
+
+    Only used to cast away constness or volatility.
+
+    Unsafe if you modify something originally declared const.
+
+Example:
+
+const int x = 5;
+int* ptr = const_cast<int*>(&x);
+*ptr = 10;  // Undefined behavior!
+
+4. reinterpret_cast<T>(expr)
+
+    Performs low-level, unsafe conversions.
+
+    Converts any pointer to any other pointer type (e.g., between unrelated classes, between pointer and integer).
+
+    Rarely portable or safe.
+
+    Use carefully.
+
+Example:
+
+int i = 65;
+char* p = reinterpret_cast<char*>(&i);
+
+
+find_first_not_of("xdh3455")
+str.find_first_not_of("01") == string::npos
+
+
+Parameters of std::stoi:
+
+int stoi(const std::string& str, std::size_t* pos = 0, int base = 10);
+
+    str: The input string.
+
+    pos: (optional) pointer to a size_t where it stores how many characters it used during the conversion. You pass nullptr if you don't care.
+
+    base: number base (e.g., 2 for binary, 8 for octal, 10 for decimal, 16 for hexadecimal).
+
+
+
+Type	Typical Size (bits)	Notes
+bool	8	Usually 1 byte (8 bits)
+char	8	Exactly 1 byte
+unsigned char	8	Exactly 1 byte
+signed char	8	Exactly 1 byte
+short	16	Usually 2 bytes
+unsigned short	16	Usually 2 bytes
+int	32	Usually 4 bytes
+unsigned int	32	Usually 4 bytes
+long	32 or 64	4 bytes on Windows, 8 bytes on most Unix64-bit
+unsigned long	32 or 64	Same as long
+long long	64	At least 8 bytes
+unsigned long long	64	At least 8 bytes
+float	32	4 bytes (IEEE 754 single precision)
+double	64	8 bytes (IEEE 754 double precision)
+long double	80, 96, or 128	Platform 
+
+
+
+
+
+
+
+
+
+
+A union in C++ is a special user-defined type similar to a struct, but with one critical difference:
+
+    🚨 All members of a union share the same memory location.
+
+This means:
+
+    A union can only hold one value at a time.
+
+    The size of a union is equal to the size of its largest member.
+
+    You can use it to reinterpret data without copying.
+
+✅ Syntax Example:
+
+union MyUnion {
+    int i;
+    float f;
+};
+
+You can use it like this:
+
+MyUnion u;
+u.i = 42;
+std::cout << u.i << "\n";  // OK
+u.f = 3.14f;                // This overwrites the int
+std::cout << u.f << "\n";  // OK
+
+But now u.i holds garbage, because u.f overwrote its memory.
+📦 In Practice – Why We Use It for Type Casting:
+
+Here’s your float example:
+
+union {
+    float f;
+    uint32_t u;
+} conv;
+
+conv.f = 3.14f;
+std::cout << std::hex << conv.u << "\n";  // Bit-level representation of the float
+
+
+
+
+🧠 Common Regex Patterns (Cheat Sheet)
+
+
+
+| Pattern   | Meaning                             | Example Match          |            |
+| --------- | ----------------------------------- | ---------------------- | ---------- |
+| `.`       | Any character except newline        | `a`, `1`, `@`          |            |
+| `\d`      | Digit (0-9)                         | `3`                    |            |
+| `\D`      | Non-digit                           | `a`, `.`               |            |
+| `\w`      | Word character (letter, digit, `_`) | `a`, `Z`, `9`          |            |
+| `\W`      | Non-word character                  | `!`, `.`               |            |
+| `\s`      | Whitespace (space, tab, newline)    | `' '`                  |            |
+| `\S`      | Non-whitespace                      | `a`, `3`               |            |
+| `^`       | Start of string                     |                        |            |
+| `$`       | End of string                       |                        |            |
+| `[...]`   | Character class                     | `[abc]` matches `a`    |            |
+| `[^...]`  | Negated character class             | `[^a]` not `a`         |            |
+| \`a       | b\`                                 | Alternation            | `a` or `b` |
+| `( ... )` | Capturing group                     |                        |            |
+| `*`       | 0 or more                           | `lo*` → `l`, `loo`     |            |
+| `+`       | 1 or more                           | `lo+` → `lo`, `loo`    |            |
+| `?`       | 0 or 1                              | `lo?` → `l`, `lo`      |            |
+| `{n}`     | Exactly n                           | `a{3}` → `aaa`         |            |
+| `{n,}`    | At least n                          | `a{2,}` → `aa`, `aaaa` |            |
+| `{n,m}`   | Between n and m                     | `a{2,4}` → `aa`, `aaa` |            |
+
+⚠️ In C++, use double backslashes:
+
+    \d becomes "\\d"
+
+    \s+ becomes "\\s+"
