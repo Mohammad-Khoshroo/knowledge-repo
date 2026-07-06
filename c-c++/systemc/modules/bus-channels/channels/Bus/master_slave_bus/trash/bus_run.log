@@ -1,0 +1,49 @@
+in constructor
+in constructor memory set to null
+in constructor set priority to i
+memory top16
+memory top48
+add master successful Num=1
+add slave successful Num=1
+add slave successful Num=2
+wait for request
+
+Info: (I702) default timescale unit used for tracing: 1 ns (bus_trace.vcd)
+[32m[MASTER] Writing 0xa0 to address 0x10[0m
+request is: 1
+currentMaster0
+010
+targetAddress010
+
+Warning: (W206) vector contains 4-value logic
+In file: ../../../src/sysc/datatypes/bit/sc_proxy.h:1457
+In process: slave2.respond @ 12 ns
+[32m[MASTER] Writing 0xa1 to address 0x11[0m
+
+Warning: (W206) vector contains 4-value logic
+In file: ../../../src/sysc/datatypes/bit/sc_proxy.h:1457
+In process: slave2.respond @ 14 ns
+wait for request
+[32m[MASTER] Writing 0xa2 to address 0x12[0m
+request is: 1
+currentMaster0
+012
+targetAddress012
+[32m[MASTER] Writing 0xa3 to address 0x13[0m
+wait for request
+request is: 1
+currentMaster0
+010
+[34m[MASTER] Read from 0x10: 0x0 at 34 ns[0m
+targetAddress010
+wait for request
+[34m[MASTER] Read from 0x11: 0x0 at 40 ns[0m
+request is: 1
+currentMaster0
+012
+[34m[MASTER] Read from 0x12: 0x0 at 44 ns[0m
+targetAddress012
+wait for request
+[34m[MASTER] Read from 0x13: 0x0 at 50 ns[0m
+
+Info: /OSCI/SystemC: Simulation stopped by user.
