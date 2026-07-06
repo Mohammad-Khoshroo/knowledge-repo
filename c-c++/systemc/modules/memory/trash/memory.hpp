@@ -1,0 +1,338 @@
+#pragma once
+#include <header.hpp>
+#include <csv.hpp>
+#include <sc_cast.hpp>
+
+using namespace std;
+
+template <typename T, int WIDTH>
+class Memory : public sc_module
+{
+private:
+    enum class State
+    {
+        INIT = 0,
+        READ = 1,
+        WRITE = 2,
+        ISSUE_READY = 3,
+        DUMP = 4,
+        IDLE = 7,
+    };
+
+    int memoryCapacity; // how many address we can set on memory
+
+    // Register of Memory
+    // Instructions and Data
+    std::vector<T> memory;
+
+    std::vector<int> &dumpTimes; // times to dump memory
+
+    // Read File Stream
+    // Load Files
+    csv::CSVReader memoryIFile;
+
+    // Write File Stream
+    // Save Files
+    iostream::ofstream memoryOFile;
+    std::string memPath; // Path to memory file
+    iostream::ofstream dumpOFile;
+    std::string dumpPath; // Path to dump file
+
+    // Trace variables
+    sc_signal<bool> traceInit, traceRead, traceDump, traceIssueReady, traceWrite;
+
+    /*Functions*/
+    /////////////////////////////////////////////////////////////////////////
+
+    void readCSV(csv::CSVReader &fileStream, std::vector<T> &targetMemory, bool fullMemory = true)
+    {
+        uint64_t i = 0;
+        std::string emptyData(WIDTH, 'X'); // Default value for uninitialized memory
+        T val;
+        for (csv::CSVRow &row : fileStream)
+        {
+            uint64_t addr = sc_cast::string_cast<uint64_t>(row["address"].get(), 16);
+
+            if (addr >= memoryCapacity)
+            {
+                SC_REPORT_WARNING("Memory", "Address out of bounds in CSV");
+                val = sc_cast::string_cast<T>(emptyData);
+                continue; // Skip this entry
+            }
+            if (row["data"].get().empty())
+            {
+                SC_REPORT_WARNING("Memory", "Data field is empty in CSV!!!! Filling with default value X");
+                val = sc_cast::string_cast<T>(emptyData); // Fill with default value
+                continue;
+            }
+            else
+                val = sc_cast::string_cast<T>(row["data"].get(), 2);
+
+            targetMemory[addr] = val;
+            i++;
+        }
+        if (i != memoryCapacity && fullMemory)
+            SC_REPORT_WARNING("Memory", "CSV file does not match memory capacity. Expected: " + to_string(memoryCapacity) + ", Found: " + to_string(i));
+        for (size_t j = i; j < memoryCapacity; j++)
+        {
+            val = sc_cast::string_cast<T>(emptyData); // Initialize remaining memory to zero
+            targetMemory[j] = val;
+        }
+    }
+
+    void writeCSV(std::ofstream &outFile, std::vector<T> &memoryArray)
+    {
+        outFile << "address,data\n";
+        for (size_t i = 0; i < memoryArray.size(); ++i)
+        {
+            stringstream hexAddress;
+            hexAddress << std::hex << std::uppercase << i; // << std::hex sets hex format
+            std::string dataStr = memoryArray[i].to_string();
+            if (dataStr.find('X') != std::string::npos || dataStr.find('x') != std::string::npos)
+                dataStr = std::string(WIDTH, 'X');
+            outFile << hexAddress.str() << "," << dataStr << "\n";
+        }
+    }
+
+    // when you read from Memory one Data
+    void readMem();
+    // when you write on Memory one Data
+    void writeMem();
+    // when you save all Memory n dumpFile
+    void dump();
+    // issue ready signal for handShaking
+    void setMemReady();
+    // trace activities of memory
+    void trace();
+    // checking conflict of read and write
+    void checkConflict();
+
+public:
+    sc_in<sc_logic> clk;
+
+    // Select Module
+    // somehow a start signal
+    sc_in<sc_logic> chipSelect;
+
+    // Select Mode
+    sc_in<sc_logic> write;
+    sc_in<sc_logic> read;
+
+    // Signals for writing Data or Instruction on memory OR reading from it
+    sc_in<sc_lv<WIDTH>> address;
+    sc_in<sc_lv<WIDTH>> input;
+    sc_out<sc_lv<WIDTH>> output;
+
+    // ready signal
+    sc_out<sc_logic> ready;
+
+    // Trace signal
+    sc_out<sc_lv<3>> traceState;
+
+    SC_HAS_PROCESS(Memory);
+    Memory(sc_module_name name, string memPath_, string dumpPath_, vector<int> &dumpTimes_)
+        : sc_module(name),
+          memoryCapacity(1ULL << WIDTH), // 2^WIDTH
+          memPath(memPath_),
+          dumpPath(dumpPath_),
+          dumpTimes(dumpTimes_),
+          currentState(State::INIT)
+    {
+        traceInit.write(1);
+        traceRead.write(0);
+        traceDump.write(0);
+        traceIssueReady.write(0);
+        traceWrite.write(0);
+
+        if (memPath.empty())
+            SC_REPORT_FATAL("Memory", "File path cannot be empty");
+
+        // check if file exists
+        fstream iFile(memPath, ios::in);
+        if (!iFile.is_open())
+            SC_REPORT_FATAL("Memory", "Failed to open memory input file");
+        iFile.close();
+
+        memoryIFile = csv::CSVReader(memPath);
+        size_t memLastSizeUsed = 0;
+        for (auto &row : memoryIFile)
+            memLastSizeUsed++;
+        memoryIFile.reset(); // reset for reading again
+
+        memory.resize(memLastSizeUsed);
+
+        readCSV(memoryIFile, memory, false);
+
+        if (!dumpPath.empty())
+            dumpOFile.open(dumpPath, std::ios::out | std::ios::app);
+        else
+            SC_REPORT_WARNING("Memory", "Dump file path is empty");
+
+        currentState = State::IDLE;
+
+        sort(dumpTimes.begin(), dumpTimes.end());
+        if (!dumpTimes.empty())
+            SC_THREAD(dump);
+
+        traceInit.write(0);
+
+        SC_METHOD(checkConflict);
+        sensitive << read << write;
+
+        // Asynchronous read
+        SC_METHOD(readMem);
+        sensitive << address << chipSelect << read;
+
+        // synchronous write
+        SC_THREAD(writeMem);
+        sensitive << clk;
+
+        SC_THREAD(setMemReady);
+        sensitive << address << chipSelect << read << write;
+
+        SC_METHOD(trace);
+        sensitive << traceInit << traceRead << traceDump << traceIssueReady << traceWrite;
+    }
+
+    ~Memory()
+    {
+        // Output files
+        memoryOFile.open(memPath, std::ios::out);
+        if (memoryOFile.is_open())
+            writeCSV(memoryOFile, memory);
+        else
+            SC_REPORT_FATAL("Memory", "Failed to open memory output file");
+
+        memoryOFile.close();
+        if (dumpOFile.is_open())
+            dumpOFile.close();
+    }
+};
+
+template <typename T, int WIDTH>
+void Memory<T, WIDTH>::readMem()
+{
+    if ((chipSelect.read() == SC_LOGIC_1) && (read.read() == SC_LOGIC_1))
+    {
+        traceRead.write(1);
+        uint64_t addr = sc_cast::sc_lv_cast<uint64_t>(address);
+        if (addr >= memoryCapacity)
+        {
+            SC_REPORT_ERROR("Memory", "Read address out of bounds");
+            output.write(sc_lv<WIDTH>(std::string(WIDTH, 'X')));
+            traceRead.write(0);
+            return; // Skip this read
+        }
+        else if (addr < memory.size())
+            output.write(sc_cast::sc_lv_cast<T>(memory[addr]));
+        else
+        {
+            SC_REPORT_WARNING("Memory", "Read address exceeds memory size, returning X");
+            output.write(sc_lv<WIDTH>(std::string(WIDTH, 'X')));
+        }
+        traceRead.write(0);
+    }
+}
+
+template <typename T, int WIDTH>
+void Memory<T, WIDTH>::writeMem()
+{
+    while (true)
+    {
+
+        if ((chipSelect.read() == SC_LOGIC_1) && (write.read() == SC_LOGIC_1))
+        {
+            traceWrite.write(1);
+
+            uint64_t addr = sc_cast::sc_lv_cast<uint64_t>(address);
+            if (addr >= memoryCapacity || addr >= memory.size())
+            {
+                SC_REPORT_WARNING("Memory", "Write address invalid");
+                wait(); // avoid tight loop busy wait
+                continue;
+            }
+            memory[addr] = sc_cast::sc_lv_cast<T>(input.read());
+
+            traceWrite.write(0);
+        }
+
+        wait();
+    }
+}
+
+template <typename T, int WIDTH>
+void Memory<T, WIDTH>::dump()
+{
+    for (double t : dumpTimes)
+    {
+        sc_time target = sc_time(t, SC_NS);
+
+        sc_time now = sc_time_stamp();
+        sc_time wait_time = target - now;
+        if (wait_time > SC_ZERO_TIME)
+            wait(wait_time);
+
+        traceDump.write(1);
+
+        dumpOFile << "Dump at " << sc_time_stamp().to_string() << " seconds:\n";
+        writeCSV(dumpOFile, memory);
+        dumpOFile << "\n";
+
+        wait(SC_ZERO_TIME);
+
+        traceDump.write(0);
+    }
+}
+
+template <typename T, int WIDTH>
+void Memory<T, WIDTH>::setMemReady()
+{
+    while (true)
+    {
+        ready.write(SC_LOGIC_0);
+
+        if ((chipSelect.read() == SC_LOGIC_1) && ((write.read() == SC_LOGIC_1) || (read.read() == SC_LOGIC_1)))
+        {
+            traceIssueReady.write(1);
+
+            uint64_t addr = sc_cast::sc_lv_cast<uint64_t>(address);
+            if (addr < memoryCapacity)
+                ready.write(SC_LOGIC_1);
+
+            wait(SC_ZERO_TIME);
+            wait(SC_ZERO_TIME);
+
+            traceIssueReady.write(0);
+        }
+        wait(); // wait for sensitivity signals (address, chipSelect, read, write)
+    }
+}
+
+template <typename T, int WIDTH>
+void Memory<T, WIDTH>::trace()
+{
+    if (!traceInit.read() && !traceRead.read() && !traceDump.read() && !traceIssueReady.read() && !traceWrite.read())
+        traceState.write(sc_cast::sc_lv_cast<sc_lv<3>>(static_cast<int>(State::IDLE)));
+
+    else if (traceInit.read())
+        traceState.write(sc_cast::sc_lv_cast<sc_lv<3>>(static_cast<int>(State::INIT)));
+
+    else if (traceRead.read())
+        traceState.write(sc_cast::sc_lv_cast<sc_lv<3>>(static_cast<int>(State::READ)));
+    else if (traceWrite.read())
+        traceState.write(sc_cast::sc_lv_cast<sc_lv<3>>(static_cast<int>(State::WRITE)));
+
+    else if (traceIssueReady.read())
+        traceState.write(sc_cast::sc_lv_cast<sc_lv<3>>(static_cast<int>(State::ISSUE_READY)));
+
+    else if (traceDump.read())
+        traceState.write(sc_cast::sc_lv_cast<sc_lv<3>>(static_cast<int>(State::DUMP)));
+}
+
+template <typename T, int WIDTH>
+void Memory<T, WIDTH>::checkConflict()
+{
+    if ((read.read() == SC_LOGIC_1) &&
+        (write.read() == SC_LOGIC_1))
+        SC_REPORT_FATAL("Memory", "Conflict: both read and write signals are asserted simultaneously.");
+}
