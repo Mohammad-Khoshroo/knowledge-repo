@@ -1,0 +1,95 @@
+$var wire    1  aaaaa  clk       $end
+$var wire    1  aaaab  interrupt       $end
+$var wire   16  aaaac  addAcc/localReg(0) [15:0]  $end
+$var wire   16  aaaad  addAcc/localReg(1) [15:0]  $end
+$var wire   16  aaaae  addAcc/localReg(2) [15:0]  $end
+$var wire   16  aaaaf  addAcc/localReg(3) [15:0]  $end
+$var wire    1  aaaag  dma_config/is_done       $end
+$var wire   16  aaaah  dma_config/_fromAddress [15:0]  $end
+$var wire   16  aaaai  dma_config/_toAddress [15:0]  $end
+$var wire   16  aaaaj  dma_config/_wordsNum [15:0]  $end
+$var wire   16  aaaak  dma_config/_mode [15:0]  $end
+$var wire   16  aaaar  globalBus/cpu/address [15:0]  $end
+$var wire   16  aaaas  globalBus/cpu/input [15:0]  $end
+$var wire   16  aaaat  globalBus/cpu/out [15:0]  $end
+$var wire    1  aaaau  globalBus/cpu/ready       $end
+$var wire    1  aaaav  globalBus/cpu/read       $end
+$var wire    1  aaaaw  globalBus/cpu/write       $end
+$var wire   16  aaabe  globalBus/memory/address [15:0]  $end
+$var wire   16  aaabf  globalBus/memory/input [15:0]  $end
+$var wire   16  aaabg  globalBus/memory/out [15:0]  $end
+$var wire    1  aaabh  globalBus/memory/ready       $end
+$var wire    1  aaabi  globalBus/memory/read       $end
+$var wire    1  aaabj  globalBus/memory/write       $end
+$var wire    1  aaabk  globalBus/memory/chipSelect       $end
+$var wire   16  aaabr  dmaBus/addAcc/address [15:0]  $end
+$var wire   16  aaabs  dmaBus/addAcc/input [15:0]  $end
+$var wire   16  aaabt  dmaBus/addAcc/out [15:0]  $end
+$var wire    1  aaabu  dmaBus/addAcc/ready       $end
+$var wire    1  aaabv  dmaBus/addAcc/read       $end
+$var wire    1  aaabw  dmaBus/addAcc/write       $end
+$var wire    1  aaabx  dmaBus/addAcc/chipSelect       $end
+$var wire    1  aaaby  dma_exclusiveDist/read       $end
+$var wire    1  aaabz  dma_exclusiveDist/write       $end
+$var wire    1  aaaca  dma_exclusiveDist/ready       $end
+$var wire   16  aaacb  dma_exclusiveDist/address [15:0]  $end
+$var wire   16  aaacc  dma_exclusiveDist/out [15:0]  $end
+$var wire   16  aaacd  dma_exclusiveDist/input [15:0]  $end
+$var wire    1  aaace  dma_globalDist/read       $end
+$var wire    1  aaacf  dma_globalDist/write       $end
+$var wire    1  aaacg  dma_globalDist/ready       $end
+$var wire   16  aaach  dma_globalDist/address [15:0]  $end
+$var wire   16  aaaci  dma_globalDist/out [15:0]  $end
+$var wire   16  aaacj  dma_globalDist/input [15:0]  $end
+$var wire    1  aaack  dma_config/ready       $end
+$var wire   16  aaacl  dma_config/out [15:0]  $end
+$var wire   16  aaacm  dma_config/input [15:0]  $end
+$var wire   16  aaacn  dma_config/address [15:0]  $end
+$var wire    1  aaaco  dma_config/write       $end
+$var wire    1  aaacp  dma_config/read       $end
+$var wire    1  aaacq  dma_config/chipSelect       $end
+$var wire    1  aaacr  cpu/read       $end
+$var wire    1  aaacs  cpu/write       $end
+$var wire    1  aaact  cpu/ready       $end
+$var wire   16  aaacu  cpu/address [15:0]  $end
+$var wire   16  aaacv  cpu/out [15:0]  $end
+$var wire   16  aaacw  cpu/input [15:0]  $end
+$var wire    1  aaacx  memory/ready       $end
+$var wire   16  aaacy  memory/out [15:0]  $end
+$var wire   16  aaacz  memory/input [15:0]  $end
+$var wire   16  aaada  memory/address [15:0]  $end
+$var wire    1  aaadb  memory/write       $end
+$var wire    1  aaadc  memory/read       $end
+$var wire    1  aaadd  memory/chipSelect       $end
+$var wire    1  aaade  addAcc/ready       $end
+$var wire   16  aaadf  addAcc/out [15:0]  $end
+$var wire   16  aaadg  addAcc/input [15:0]  $end
+$var wire   16  aaadh  addAcc/address [15:0]  $end
+$var wire    1  aaadi  addAcc/write       $end
+$var wire    1  aaadj  addAcc/read       $end
+$var wire    1  aaadk  addAcc/chipSelect       $end
+$scope module dmaBus/dma $end
+$var wire   16  aaabl  dma_exclusiveDist/address [15:0]  $end
+$var wire   16  aaabm  dma_exclusiveDist/input [15:0]  $end
+$var wire   16  aaabn  dma_exclusiveDist/out [15:0]  $end
+$var wire    1  aaabo  dma_exclusiveDist/ready       $end
+$var wire    1  aaabp  dma_exclusiveDist/read       $end
+$var wire    1  aaabq  dma_exclusiveDist/write       $end
+$upscope $end
+$scope module globalBus/dma $end
+$var wire   16  aaaal  dma_globalDist/address [15:0]  $end
+$var wire   16  aaaam  dma_globalDist/input [15:0]  $end
+$var wire   16  aaaan  dma_globalDist/out [15:0]  $end
+$var wire    1  aaaao  dma_globalDist/ready       $end
+$var wire    1  aaaap  dma_globalDist/read       $end
+$var wire    1  aaaaq  dma_globalDist/write       $end
+$var wire   16  aaaax  dma_config/address [15:0]  $end
+$var wire   16  aaaay  dma_config/input [15:0]  $end
+$var wire   16  aaaaz  dma_config/out [15:0]  $end
+$var wire    1  aaaba  dma_config/ready       $end
+$var wire    1  aaabb  dma_config/read       $end
+$var wire    1  aaabc  dma_config/write       $end
+$var wire    1  aaabd  dma_config/chipSelect       $end
+$upscope $end
+$upscope $end
+$enddefinitions  $end

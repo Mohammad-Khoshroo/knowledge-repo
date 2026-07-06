@@ -1,0 +1,423 @@
+
+        SystemC 2.3.3-Accellera --- May 10 2025 20:18:16
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+request check bus 1 : 
+master0 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 00
+
+Info: (I702) default timescale unit used for tracing: 1 ps (dma_test.vcd)
+//////////////////////////////////////////////////////////
+step 01
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 10
+mappedAddr in bus 0: 0
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000011
+0000000000000011: _wordsNum
+slave in in bus0 : 0000000000000011
+slave out in bus0 : 0000000000000000
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 02
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 11
+mappedAddr in bus 0: 1
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000100
+0000000000000100: _fromAddress
+slave in in bus0 : 0000000000000100
+slave out in bus0 : 0000000000000000
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 03
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 12
+mappedAddr in bus 0: 2
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000000
+0000000000000000: _toAddress
+slave in in bus0 : 0000000000000000
+slave out in bus0 : 0000000000000000
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 04
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 13
+mappedAddr in bus 0: 3
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000001
+0000000000000001: _mode
+slave in in bus0 : 0000000000000001
+slave out in bus0 : 0000000000000000
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 05
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 13
+mappedAddr in bus 0: 3
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000010
+0000000000000010: _mode
+slave in in bus0 : 0000000000000010
+slave out in bus0 : 0000000000000000
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 1, write: 0 request? 1
+
+Info: sc_bus 0: request received
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 1, write: 0 request? 1
+
+Info: sc_bus 0: request received
+//////////////////////////////////////////////////////////
+step 06
+wait for interrupt
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 1
+targetAddr in bus 0: 4
+mappedAddr in bus 0: 4
+
+Info: sc_bus 0: Slave successfully fetched Slave 0
+master out in bus0 : 0000000000000000
+110
+slave in in bus0 : 0000000000000000
+slave out in bus0 : 0000000000010111
+0000000000010111
+master in in bus0 : 0000000000010111
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+request check bus 1 : 
+master0 read: 0, write: 1 request? 1
+
+Info: sc_bus 1: request received
+is_there_request? 1
+
+Info: sc_bus 1: Master successfully fetched Master 0
+targetAddr in bus 1: 0
+mappedAddr in bus 1: 0
+
+Info: sc_bus 1: Slave successfully fetched Slave 0
+master out in bus1 : 0000000000010111
+update:
+reg0 =0000000000010111
+reg1 =0000000000000000
+reg2 =0000000000000000
+reg3 =0000000000000000
+slave in in bus1 : 0000000000010111
+slave out in bus1 : 0000000000000000
+master in in bus1 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 1 : 
+master0 read: 0, write: 0 request? 0
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 1, write: 0 request? 1
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 1
+targetAddr in bus 0: 5
+mappedAddr in bus 0: 5
+
+Info: sc_bus 0: Slave successfully fetched Slave 0
+master out in bus0 : 0000000000000000
+110
+slave in in bus0 : 0000000000000000
+slave out in bus0 : 0000000001000010
+0000000001000010
+master in in bus0 : 0000000001000010
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+request check bus 1 : 
+master0 read: 0, write: 1 request? 1
+
+Info: sc_bus 1: request received
+is_there_request? 1
+
+Info: sc_bus 1: Master successfully fetched Master 0
+targetAddr in bus 1: 1
+mappedAddr in bus 1: 1
+
+Info: sc_bus 1: Slave successfully fetched Slave 0
+master out in bus1 : 0000000001000010
+update:
+reg0 =0000000000010111
+reg1 =0000000001000010
+reg2 =0000000000000000
+reg3 =0000000000000000
+slave in in bus1 : 0000000001000010
+slave out in bus1 : 0000000000000000
+master in in bus1 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 1 : 
+master0 read: 0, write: 0 request? 0
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 1, write: 0 request? 1
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 1
+targetAddr in bus 0: 6
+mappedAddr in bus 0: 6
+
+Info: sc_bus 0: Slave successfully fetched Slave 0
+master out in bus0 : 0000000000000000
+110
+slave in in bus0 : 0000000000000000
+slave out in bus0 : 0000000000000011
+0000000000000011
+master in in bus0 : 0000000000000011
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+request check bus 1 : 
+master0 read: 0, write: 1 request? 1
+
+Info: sc_bus 1: request received
+is_there_request? 1
+
+Info: sc_bus 1: Master successfully fetched Master 0
+targetAddr in bus 1: 2
+mappedAddr in bus 1: 2
+
+Info: sc_bus 1: Slave successfully fetched Slave 0
+master out in bus1 : 0000000000000011
+update:
+reg0 =0000000000010111
+reg1 =0000000001000010
+reg2 =0000000000000011
+reg3 =0000000000000000
+slave in in bus1 : 0000000000000011
+slave out in bus1 : 0000000000000000
+master in in bus1 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 1 : 
+master0 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 06.2
+interrupt!
+//////////////////////////////////////////////////////////
+step 07
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 10
+mappedAddr in bus 0: 0
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000001
+0000000000000001: _wordsNum
+slave in in bus0 : 0000000000000001
+slave out in bus0 : 0000000000000000
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 08
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 11
+mappedAddr in bus 0: 1
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000011
+0000000000000011: _fromAddress
+slave in in bus0 : 0000000000000011
+slave out in bus0 : 0000000000000000
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 09
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 12
+mappedAddr in bus 0: 2
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000010
+0000000000000010: _toAddress
+slave in in bus0 : 0000000000000010
+slave out in bus0 : 0000000000000000
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 10
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 13
+mappedAddr in bus 0: 3
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000001
+0000000000000001: _mode
+slave in in bus0 : 0000000000000001
+slave out in bus0 : 0000000000000000
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+//////////////////////////////////////////////////////////
+step 11
+request check bus 0 : 
+master0 read: 0, write: 1 request? 1
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 0: request received
+is_there_request? 1
+
+Info: sc_bus 0: Master successfully fetched Master 0
+targetAddr in bus 0: 13
+mappedAddr in bus 0: 3
+
+Info: sc_bus 0: Slave successfully fetched Slave 1
+master out in bus0 : 0000000000000011
+0000000000000011: _mode
+slave in in bus0 : 0000000000000011
+slave out in bus0 : 0000000000000000
+request check bus 1 : 
+master0 read: 1, write: 0 request? 1
+
+Info: sc_bus 1: request received
+master in in bus0 : 0000000000000000
+
+Info: sc_bus: Handshaking successfully done
+is_there_request? 1
+
+Info: sc_bus 1: Master successfully fetched Master 0
+targetAddr in bus 1: 3
+mappedAddr in bus 1: 3
+request check bus 0 : 
+master0 read: 0, write: 0 request? 0
+master1 read: 0, write: 0 request? 0
+
+Info: sc_bus 1: Slave successfully fetched Slave 0
+master out in bus1 : 0000000000000000
+update:
+reg0 =0000000000010111
+reg1 =0000000001000010
+reg2 =0000000000000011
+reg3 =0000000001011100
+slave in in bus1 : 0000000000000000
+slave out in bus1 : 0000000001011100
+
+Info: /OSCI/SystemC: Simulation stopped by user.

@@ -1,0 +1,26 @@
+
+        SystemC 2.3.3-Accellera --- May 10 2025 20:18:16
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+[TEST] Scenario 1: chipSelect=1, read=1 => output should follow input
+
+Info: (I702) default timescale unit used for tracing: 1 ps (slave_module_impl_test.vcd)
+    Output = 1111000011110000
+    [PASS] Scenario 1
+
+[TEST] Scenario 2: chipSelect=0, read=1 => output should be 0
+    Output = 0000000000000000
+    [PASS] Scenario 2
+
+[TEST] Scenario 3: chipSelect=1, read=0 => output should be 0
+    Output = 0000000000000000
+    [PASS] Scenario 3
+
+[TEST] Scenario 4: chipSelect=1, read=1, input changes => output changes on clk
+    Output (step 1) = 0000111100001111
+    Output (step 2) = 1010101010101010
+    [PASS] Scenario 4
+
+
+Info: /OSCI/SystemC: Simulation stopped by user.

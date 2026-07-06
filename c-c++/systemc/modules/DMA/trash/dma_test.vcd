@@ -1,0 +1,276 @@
+$date
+     Aug 04, 2025       02:12:20
+$end
+
+$version
+ SystemC 2.3.3-Accellera --- May 10 2025 20:18:16
+$end
+
+$timescale
+     1 ps
+$end
+
+$scope module SystemC $end
+$var wire    1  aaaaa  clk       $end
+$var wire    1  aaaab  cpu/interrupt       $end
+$var wire   16  aaaac  dma_config/is_done [15:0]  $end
+$var wire   16  aaaad  dma_config/fromAddress [15:0]  $end
+$var wire   16  aaaae  dma_config/toAddress [15:0]  $end
+$var wire   16  aaaaf  dma_config/wordsNum [15:0]  $end
+$var wire   16  aaaag  dma_config/mode [15:0]  $end
+$var wire   16  aaaao  memory/globalBusbundle/address [15:0]  $end
+$var wire   16  aaaap  memory/globalBusbundle/input [15:0]  $end
+$var wire   16  aaaaq  memory/globalBusbundle/out [15:0]  $end
+$var wire    1  aaaar  memory/globalBusbundle/read       $end
+$var wire    1  aaaas  memory/globalBusbundle/write       $end
+$var wire    1  aaaat  memory/globalBusbundle/ready       $end
+$var wire    1  aaaau  memory/globalBusbundle/chipSelect       $end
+$var wire   16  aaaav  cpu/globalBusbundle/address [15:0]  $end
+$var wire   16  aaaaw  cpu/globalBusbundle/input [15:0]  $end
+$var wire   16  aaaax  cpu/globalBusbundle/out [15:0]  $end
+$var wire    1  aaaay  cpu/globalBusbundle/read       $end
+$var wire    1  aaaaz  cpu/globalBusbundle/write       $end
+$var wire    1  aaaba  cpu/globalBusbundle/ready       $end
+$var wire   16  aaabn  +/dmaBusbundle/address [15:0]  $end
+$var wire   16  aaabo  +/dmaBusbundle/input [15:0]  $end
+$var wire   16  aaabp  +/dmaBusbundle/out [15:0]  $end
+$var wire    1  aaabq  +/dmaBusbundle/read       $end
+$var wire    1  aaabr  +/dmaBusbundle/write       $end
+$var wire    1  aaabs  +/dmaBusbundle/ready       $end
+$var wire    1  aaabt  +/dmaBusbundle/chipSelect       $end
+$var wire    1  aaabu  memory/ready       $end
+$var wire    1  aaabv  memory/chipSelect       $end
+$var wire    1  aaabw  memory/write       $end
+$var wire    1  aaabx  memory/read       $end
+$var wire   16  aaaby  memory/out [15:0]  $end
+$var wire   16  aaabz  memory/input [15:0]  $end
+$var wire   16  aaaca  memory/address [15:0]  $end
+$var wire    1  aaacu  +/ready       $end
+$var wire    1  aaacv  +/chipSelect       $end
+$var wire    1  aaacw  +/write       $end
+$var wire    1  aaacx  +/read       $end
+$var wire   16  aaacy  +/out [15:0]  $end
+$var wire   16  aaacz  +/input [15:0]  $end
+$var wire   16  aaada  +/address [15:0]  $end
+$var wire    1  aaadb  cpu/ready       $end
+$var wire    1  aaadc  cpu/read       $end
+$var wire    1  aaadd  cpu/write       $end
+$var wire   16  aaade  cpu/out [15:0]  $end
+$var wire   16  aaadf  cpu/input [15:0]  $end
+$var wire   16  aaadg  cpu/address [15:0]  $end
+$scope module dma $end
+$var wire   16  aaaah  dma_config/globalBusbundle/address [15:0]  $end
+$var wire   16  aaaai  dma_config/globalBusbundle/input [15:0]  $end
+$var wire   16  aaaaj  dma_config/globalBusbundle/out [15:0]  $end
+$var wire    1  aaaak  dma_config/globalBusbundle/read       $end
+$var wire    1  aaaal  dma_config/globalBusbundle/write       $end
+$var wire    1  aaaam  dma_config/globalBusbundle/ready       $end
+$var wire    1  aaaan  dma_config/globalBusbundle/chipSelect       $end
+$var wire    1  aaacn  dma_config/ready       $end
+$var wire    1  aaaco  dma_config/chipSelect       $end
+$var wire    1  aaacp  dma_config/write       $end
+$var wire    1  aaacq  dma_config/read       $end
+$var wire   16  aaacr  dma_config/out [15:0]  $end
+$var wire   16  aaacs  dma_config/input [15:0]  $end
+$var wire   16  aaact  dma_config/address [15:0]  $end
+$scope module dma_dist $end
+$var wire   16  aaabb  dma_dist_memory_side/globalBusbundle/address [15:0]  $end
+$var wire   16  aaabc  dma_dist_memory_side/globalBusbundle/input [15:0]  $end
+$var wire   16  aaabd  dma_dist_memory_side/globalBusbundle/out [15:0]  $end
+$var wire    1  aaabe  dma_dist_memory_side/globalBusbundle/read       $end
+$var wire    1  aaabf  dma_dist_memory_side/globalBusbundle/write       $end
+$var wire    1  aaabg  dma_dist_memory_side/globalBusbundle/ready       $end
+$var wire   16  aaabh  dma_dist_other_side/dmaBusbundle/address [15:0]  $end
+$var wire   16  aaabi  dma_dist_other_side/dmaBusbundle/input [15:0]  $end
+$var wire   16  aaabj  dma_dist_other_side/dmaBusbundle/out [15:0]  $end
+$var wire    1  aaabk  dma_dist_other_side/dmaBusbundle/read       $end
+$var wire    1  aaabl  dma_dist_other_side/dmaBusbundle/write       $end
+$var wire    1  aaabm  dma_dist_other_side/dmaBusbundle/ready       $end
+$var wire    1  aaacb  dma_dist_other_side/ready       $end
+$var wire    1  aaacc  dma_dist_other_side/read       $end
+$var wire    1  aaacd  dma_dist_other_side/write       $end
+$var wire   16  aaace  dma_dist_other_side/out [15:0]  $end
+$var wire   16  aaacf  dma_dist_other_side/input [15:0]  $end
+$var wire   16  aaacg  dma_dist_other_side/address [15:0]  $end
+$var wire    1  aaach  dma_dist_memory_side/ready       $end
+$var wire    1  aaaci  dma_dist_memory_side/read       $end
+$var wire    1  aaacj  dma_dist_memory_side/write       $end
+$var wire   16  aaack  dma_dist_memory_side/out [15:0]  $end
+$var wire   16  aaacl  dma_dist_memory_side/input [15:0]  $end
+$var wire   16  aaacm  dma_dist_memory_side/address [15:0]  $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions  $end
+
+$comment
+All initial values are dumped below at time 0 sec = 0 timescale units.
+$end
+
+$dumpvars
+1aaaaa
+xaaaab
+bXXXXXXXXXXXXXXXX aaaac
+bXXXXXXXXXXXXXXXX aaaad
+bXXXXXXXXXXXXXXXX aaaae
+bXXXXXXXXXXXXXXXX aaaaf
+bXXXXXXXXXXXXXXXX aaaag
+b0 aaaah
+b0 aaaai
+b0 aaaaj
+0aaaak
+0aaaal
+1aaaam
+0aaaan
+b0 aaaao
+b0 aaaap
+bXXXXXXXXXXXXXXXX aaaaq
+0aaaar
+0aaaas
+0aaaat
+0aaaau
+b0 aaaav
+b0 aaaaw
+b0 aaaax
+0aaaay
+0aaaaz
+1aaaba
+bXXXXXXXXXXXXXXXX aaabb
+b0 aaabc
+bXXXXXXXXXXXXXXXX aaabd
+xaaabe
+xaaabf
+1aaabg
+bXXXXXXXXXXXXXXXX aaabh
+b0 aaabi
+bXXXXXXXXXXXXXXXX aaabj
+xaaabk
+xaaabl
+1aaabm
+b0 aaabn
+b0 aaabo
+b0 aaabp
+0aaabq
+0aaabr
+0aaabs
+0aaabt
+0aaabu
+0aaabv
+0aaabw
+0aaabx
+bXXXXXXXXXXXXXXXX aaaby
+b0 aaabz
+b0 aaaca
+1aaacb
+xaaacc
+xaaacd
+bXXXXXXXXXXXXXXXX aaace
+b0 aaacf
+bXXXXXXXXXXXXXXXX aaacg
+1aaach
+xaaaci
+xaaacj
+bXXXXXXXXXXXXXXXX aaack
+b0 aaacl
+bXXXXXXXXXXXXXXXX aaacm
+1aaacn
+0aaaco
+0aaacp
+0aaacq
+b0 aaacr
+b0 aaacs
+b0 aaact
+0aaacu
+0aaacv
+0aaacw
+0aaacx
+b0 aaacy
+b0 aaacz
+b0 aaada
+1aaadb
+0aaadc
+0aaadd
+b0 aaade
+b0 aaadf
+b0 aaadg
+$end
+
+#500
+0aaaaa
+
+#1000
+1aaaaa
+
+#1500
+0aaaaa
+
+#2000
+1aaaaa
+
+#2500
+0aaaaa
+
+#3000
+1aaaaa
+
+#3500
+0aaaaa
+
+#4000
+1aaaaa
+
+#4500
+0aaaaa
+
+#5000
+1aaaaa
+
+#5500
+0aaaaa
+
+#6000
+1aaaaa
+
+#6500
+0aaaaa
+
+#7000
+1aaaaa
+
+#7500
+0aaaaa
+
+#8000
+1aaaaa
+
+#8500
+0aaaaa
+
+#9000
+1aaaaa
+
+#9500
+0aaaaa
+b1000 aaaav
+b11 aaaax
+1aaaaz
+1aaadd
+b11 aaade
+b1000 aaadg
+
+#10000
+1aaaaa
+bXXXXXXXXXXXXXXXX aaaah
+b11 aaaai
+1aaaal
+1aaaan
+0aaaba
+1aaaco
+1aaacp
+b11 aaacs
+bXXXXXXXXXXXXXXXX aaact
+0aaadb
+
+#10500
+0aaaaa
+

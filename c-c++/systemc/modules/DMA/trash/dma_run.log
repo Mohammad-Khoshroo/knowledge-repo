@@ -1,0 +1,26 @@
+
+        SystemC 2.3.3-Accellera --- May 10 2025 20:18:16
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+hi
+
+Info: (I804) /IEEE_Std_1666/deprecated: interface and/or port binding in port constructors is deprecated
+
+Info: (I702) default timescale unit used for tracing: 1 ps (dma_test.vcd)
+0
+
+Warning: (W206) vector contains 4-value logic
+In file: ../../../src/sysc/datatypes/bit/sc_proxy.h:1476
+In process: dma.dma_config.evalConfig @ 11 ns
+
+Error: DMA: Invalid address in config state.
+In file: ./DMA.hpp:67
+In process: dma.dma_config.evalConfig @ 11 ns
+
+Info: (I804) /IEEE_Std_1666/deprecated: You can turn off warnings about
+             IEEE 1666 deprecated features by placing this method call
+             as the first statement in your sc_main() function:
+
+  sc_core::sc_report_handler::set_actions( "/IEEE_Std_1666/deprecated",
+                                           sc_core::SC_DO_NOTHING );
+

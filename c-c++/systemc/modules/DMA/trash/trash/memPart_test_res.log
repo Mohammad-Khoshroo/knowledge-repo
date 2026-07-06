@@ -1,0 +1,15 @@
+
+        SystemC 2.3.3-Accellera --- May 10 2025 20:18:16
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+Start limit after p1: 100
+Is 50 covered by p1? Yes
+Is 150 covered by p1? No
+Start limit after p2: 300
+Is 150 covered by p2? Yes
+Is 99 covered by p2? No
+
+Fatal: Memory Partition: You should start partition from first location which is empty.
+In file: ./utils.hpp:26
+
+Info: (I99) simulation aborted

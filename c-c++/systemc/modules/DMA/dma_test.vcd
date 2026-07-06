@@ -1,0 +1,1288 @@
+$date
+     Aug 08, 2025       22:09:58
+$end
+
+$version
+ SystemC 2.3.3-Accellera --- May 10 2025 20:18:16
+$end
+
+$timescale
+     1 ps
+$end
+
+$scope module SystemC $end
+$var wire    1  aaaaa  top/clk       $end
+$var wire    1  aaaab  top/interrupt       $end
+$var wire   16  aaaah  addAcc/localReg(0) [15:0]  $end
+$var wire   16  aaaai  addAcc/localReg(1) [15:0]  $end
+$var wire   16  aaaaj  addAcc/localReg(2) [15:0]  $end
+$var wire   16  aaaak  addAcc/localReg(3) [15:0]  $end
+$var wire    1  aaaal  dma_config/is_done       $end
+$var wire   16  aaaam  dma_config/_fromAddress [15:0]  $end
+$var wire   16  aaaan  dma_config/_toAddress [15:0]  $end
+$var wire   16  aaaao  dma_config/_wordsNum [15:0]  $end
+$var wire   16  aaaap  dma_config/_mode [15:0]  $end
+$var wire    1  aaacd  dma_exclusive/read       $end
+$var wire    1  aaace  dma_exclusive/write       $end
+$var wire    1  aaacf  dma_exclusive/ready       $end
+$var wire   16  aaacg  dma_exclusive/address [15:0]  $end
+$var wire   16  aaach  dma_exclusive/out [15:0]  $end
+$var wire   16  aaaci  dma_exclusive/input [15:0]  $end
+$var wire    1  aaacj  dma_global/read       $end
+$var wire    1  aaack  dma_global/write       $end
+$var wire    1  aaacl  dma_global/ready       $end
+$var wire   16  aaacm  dma_global/address [15:0]  $end
+$var wire   16  aaacn  dma_global/out [15:0]  $end
+$var wire   16  aaaco  dma_global/input [15:0]  $end
+$var wire    1  aaacp  dma_config/ready       $end
+$var wire   16  aaacq  dma_config/out [15:0]  $end
+$var wire   16  aaacr  dma_config/input [15:0]  $end
+$var wire   16  aaacs  dma_config/address [15:0]  $end
+$var wire    1  aaact  dma_config/write       $end
+$var wire    1  aaacu  dma_config/read       $end
+$var wire    1  aaacv  dma_config/chipSelect       $end
+$var wire    1  aaacw  cpu/read       $end
+$var wire    1  aaacx  cpu/write       $end
+$var wire    1  aaacy  cpu/ready       $end
+$var wire   16  aaacz  cpu/address [15:0]  $end
+$var wire   16  aaada  cpu/out [15:0]  $end
+$var wire   16  aaadb  cpu/input [15:0]  $end
+$var wire    1  aaadc  memory/ready       $end
+$var wire   16  aaadd  memory/out [15:0]  $end
+$var wire   16  aaade  memory/input [15:0]  $end
+$var wire   16  aaadf  memory/address [15:0]  $end
+$var wire    1  aaadg  memory/write       $end
+$var wire    1  aaadh  memory/read       $end
+$var wire    1  aaadi  memory/chipSelect       $end
+$var wire    1  aaadj  addAcc/ready       $end
+$var wire   16  aaadk  addAcc/out [15:0]  $end
+$var wire   16  aaadl  addAcc/input [15:0]  $end
+$var wire   16  aaadm  addAcc/address [15:0]  $end
+$var wire    1  aaadn  addAcc/write       $end
+$var wire    1  aaado  addAcc/read       $end
+$var wire    1  aaadp  addAcc/chipSelect       $end
+$scope module top $end
+$var wire    1  aaaac  globalBus_requests(0)       $end
+$var wire    1  aaaad  globalBus_requests(1)       $end
+$var wire    1  aaaae  globalBus_request?       $end
+$var wire    1  aaaaf  dmaBus_requests(0)       $end
+$var wire    1  aaaag  dmaBus_request?       $end
+$scope module dmaBus/top $end
+$var wire   16  aaabw  addAcc_bundle/address [15:0]  $end
+$var wire   16  aaabx  addAcc_bundle/input [15:0]  $end
+$var wire   16  aaaby  addAcc_bundle/out [15:0]  $end
+$var wire    1  aaabz  addAcc_bundle/ready       $end
+$var wire    1  aaaca  addAcc_bundle/read       $end
+$var wire    1  aaacb  addAcc_bundle/write       $end
+$var wire    1  aaacc  addAcc_bundle/chipSelect       $end
+$scope module dma $end
+$var wire   16  aaabq  dma_exclusive_bundle/address [15:0]  $end
+$var wire   16  aaabr  dma_exclusive_bundle/input [15:0]  $end
+$var wire   16  aaabs  dma_exclusive_bundle/out [15:0]  $end
+$var wire    1  aaabt  dma_exclusive_bundle/ready       $end
+$var wire    1  aaabu  dma_exclusive_bundle/read       $end
+$var wire    1  aaabv  dma_exclusive_bundle/write       $end
+$upscope $end
+$upscope $end
+$scope module globalBus/top $end
+$var wire   16  aaaaq  cpu_bundle/address [15:0]  $end
+$var wire   16  aaaar  cpu_bundle/input [15:0]  $end
+$var wire   16  aaaas  cpu_bundle/out [15:0]  $end
+$var wire    1  aaaat  cpu_bundle/ready       $end
+$var wire    1  aaaau  cpu_bundle/read       $end
+$var wire    1  aaaav  cpu_bundle/write       $end
+$var wire   16  aaabc  memory_bundle/address [15:0]  $end
+$var wire   16  aaabd  memory_bundle/input [15:0]  $end
+$var wire   16  aaabe  memory_bundle/out [15:0]  $end
+$var wire    1  aaabf  memory_bundle/ready       $end
+$var wire    1  aaabg  memory_bundle/read       $end
+$var wire    1  aaabh  memory_bundle/write       $end
+$var wire    1  aaabi  memory_bundle/chipSelect       $end
+$scope module dma $end
+$var wire   16  aaaaw  dma_global_bundle/address [15:0]  $end
+$var wire   16  aaaax  dma_global_bundle/input [15:0]  $end
+$var wire   16  aaaay  dma_global_bundle/out [15:0]  $end
+$var wire    1  aaaaz  dma_global_bundle/ready       $end
+$var wire    1  aaaba  dma_global_bundle/read       $end
+$var wire    1  aaabb  dma_global_bundle/write       $end
+$var wire   16  aaabj  dma_config_bundle/address [15:0]  $end
+$var wire   16  aaabk  dma_config_bundle/input [15:0]  $end
+$var wire   16  aaabl  dma_config_bundle/out [15:0]  $end
+$var wire    1  aaabm  dma_config_bundle/ready       $end
+$var wire    1  aaabn  dma_config_bundle/read       $end
+$var wire    1  aaabo  dma_config_bundle/write       $end
+$var wire    1  aaabp  dma_config_bundle/chipSelect       $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions  $end
+
+$comment
+All initial values are dumped below at time 0 sec = 0 timescale units.
+$end
+
+$dumpvars
+1aaaaa
+xaaaab
+0aaaac
+0aaaad
+0aaaae
+0aaaaf
+0aaaag
+b0 aaaah
+b0 aaaai
+b0 aaaaj
+b0 aaaak
+xaaaal
+bXXXXXXXXXXXXXXXX aaaam
+bXXXXXXXXXXXXXXXX aaaan
+bXXXXXXXXXXXXXXXX aaaao
+bXXXXXXXXXXXXXXXX aaaap
+b0 aaaaq
+b0 aaaar
+b0 aaaas
+0aaaat
+0aaaau
+0aaaav
+bXXXXXXXXXXXXXXXX aaaaw
+b0 aaaax
+bXXXXXXXXXXXXXXXX aaaay
+0aaaaz
+0aaaba
+0aaabb
+b0 aaabc
+b0 aaabd
+b0 aaabe
+0aaabf
+0aaabg
+0aaabh
+0aaabi
+b0 aaabj
+b0 aaabk
+b0 aaabl
+0aaabm
+0aaabn
+0aaabo
+0aaabp
+bXXXXXXXXXXXXXXXX aaabq
+b0 aaabr
+bXXXXXXXXXXXXXXXX aaabs
+0aaabt
+0aaabu
+0aaabv
+b0 aaabw
+b0 aaabx
+b0 aaaby
+0aaabz
+0aaaca
+0aaacb
+0aaacc
+0aaacd
+0aaace
+0aaacf
+bXXXXXXXXXXXXXXXX aaacg
+bXXXXXXXXXXXXXXXX aaach
+b0 aaaci
+0aaacj
+0aaack
+0aaacl
+bXXXXXXXXXXXXXXXX aaacm
+bXXXXXXXXXXXXXXXX aaacn
+b0 aaaco
+0aaacp
+b0 aaacq
+b0 aaacr
+b0 aaacs
+0aaact
+0aaacu
+0aaacv
+0aaacw
+0aaacx
+0aaacy
+b0 aaacz
+b0 aaada
+b0 aaadb
+0aaadc
+b0 aaadd
+b0 aaade
+b0 aaadf
+0aaadg
+0aaadh
+0aaadi
+0aaadj
+b0 aaadk
+b0 aaadl
+b0 aaadm
+0aaadn
+0aaado
+0aaadp
+$end
+
+#2000
+0aaaaa
+
+#4000
+1aaaaa
+
+#6000
+0aaaaa
+
+#8000
+1aaaaa
+
+#10000
+0aaaaa
+
+#12000
+1aaaaa
+
+#14000
+0aaaaa
+
+#16000
+1aaaaa
+
+#18000
+0aaaaa
+
+#20000
+1aaaaa
+
+#22000
+0aaaaa
+
+#24000
+1aaaaa
+
+#26000
+0aaaaa
+
+#28000
+1aaaaa
+
+#30000
+0aaaaa
+
+#32000
+1aaaaa
+
+#34000
+0aaaaa
+
+#36000
+1aaaaa
+
+#38000
+0aaaaa
+
+#40000
+1aaaaa
+
+#42000
+0aaaaa
+
+#44000
+1aaaaa
+
+#46000
+0aaaaa
+
+#48000
+1aaaaa
+
+#50000
+0aaaaa
+
+#52000
+1aaaaa
+
+#54000
+0aaaaa
+
+#56000
+1aaaaa
+
+#58000
+0aaaaa
+
+#60000
+1aaaaa
+1aaaac
+1aaaae
+b1010 aaaaq
+b11 aaaas
+1aaaav
+1aaacx
+b1010 aaacz
+b11 aaada
+
+#62000
+0aaaaa
+
+#64000
+1aaaaa
+b11 aaabk
+1aaabo
+1aaabp
+b11 aaacr
+1aaact
+1aaacv
+
+#66000
+0aaaaa
+
+#68000
+1aaaaa
+b11 aaaao
+1aaabm
+1aaacp
+
+#70000
+0aaaaa
+
+#72000
+1aaaaa
+1aaaat
+0aaabm
+0aaabo
+0aaabp
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#74000
+0aaaaa
+
+#76000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaacx
+
+#77000
+1aaaac
+1aaaae
+b1011 aaaaq
+b100 aaaas
+1aaaav
+1aaacx
+b1011 aaacz
+b100 aaada
+
+#78000
+0aaaaa
+
+#80000
+1aaaaa
+0aaaat
+b1 aaabj
+b100 aaabk
+1aaabo
+1aaabp
+b100 aaacr
+b1 aaacs
+1aaact
+1aaacv
+0aaacy
+
+#82000
+0aaaaa
+
+#84000
+1aaaaa
+b100 aaaam
+1aaabm
+1aaacp
+
+#86000
+0aaaaa
+
+#88000
+1aaaaa
+1aaaat
+0aaabm
+0aaabo
+0aaabp
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#90000
+0aaaaa
+
+#92000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaacx
+
+#93000
+1aaaac
+1aaaae
+b1100 aaaaq
+b0 aaaas
+1aaaav
+1aaacx
+b1100 aaacz
+b0 aaada
+
+#94000
+0aaaaa
+
+#96000
+1aaaaa
+0aaaat
+b10 aaabj
+b0 aaabk
+1aaabo
+1aaabp
+b0 aaacr
+b10 aaacs
+1aaact
+1aaacv
+0aaacy
+
+#98000
+0aaaaa
+
+#100000
+1aaaaa
+b0 aaaan
+1aaabm
+1aaacp
+
+#102000
+0aaaaa
+
+#104000
+1aaaaa
+1aaaat
+0aaabm
+0aaabo
+0aaabp
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#106000
+0aaaaa
+
+#108000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaacx
+
+#109000
+1aaaac
+1aaaae
+b1101 aaaaq
+b1 aaaas
+1aaaav
+1aaacx
+b1101 aaacz
+b1 aaada
+
+#110000
+0aaaaa
+
+#112000
+1aaaaa
+0aaaat
+b11 aaabj
+b1 aaabk
+1aaabo
+1aaabp
+b1 aaacr
+b11 aaacs
+1aaact
+1aaacv
+0aaacy
+
+#114000
+0aaaaa
+
+#116000
+1aaaaa
+b1 aaaap
+1aaabm
+1aaacp
+
+#118000
+0aaaaa
+
+#120000
+1aaaaa
+0aaaal
+1aaaat
+b0 aaaaw
+b0 aaaay
+0aaabm
+0aaabo
+0aaabp
+b0 aaabq
+b0 aaabs
+b0 aaacg
+b0 aaach
+b0 aaacm
+b0 aaacn
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#122000
+0aaaaa
+
+#124000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaacx
+
+#125000
+1aaaac
+1aaaae
+b10 aaaas
+1aaaav
+1aaacx
+b10 aaada
+
+#126000
+0aaaaa
+
+#128000
+1aaaaa
+0aaaat
+b10 aaabk
+1aaabo
+1aaabp
+b10 aaacr
+1aaact
+1aaacv
+0aaacy
+
+#130000
+0aaaaa
+
+#132000
+1aaaaa
+b10 aaaap
+1aaabm
+1aaacp
+
+#134000
+0aaaaa
+
+#136000
+1aaaaa
+1aaaad
+1aaaat
+b100 aaaaw
+1aaaba
+0aaabm
+0aaabo
+0aaabp
+1aaacj
+b100 aaacm
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#138000
+0aaaaa
+
+#140000
+1aaaaa
+0aaaac
+0aaaav
+0aaacx
+
+#142000
+0aaaaa
+
+#144000
+1aaaaa
+b100 aaabc
+1aaabg
+1aaabi
+b100 aaadf
+1aaadh
+1aaadi
+
+#146000
+0aaaaa
+
+#148000
+1aaaaa
+b10111 aaabe
+1aaabf
+1aaadc
+b10111 aaadd
+
+#150000
+0aaaaa
+
+#152000
+1aaaaa
+b10111 aaaax
+1aaaaz
+b0 aaabe
+0aaabf
+0aaabg
+0aaabi
+1aaacl
+b10111 aaaco
+0aaadc
+b0 aaadd
+0aaadh
+0aaadi
+
+#154000
+0aaaaa
+
+#156000
+1aaaaa
+0aaaad
+0aaaae
+1aaaaf
+1aaaag
+0aaaba
+b10111 aaabs
+1aaabv
+1aaace
+b10111 aaach
+0aaacj
+
+#158000
+0aaaaa
+
+#160000
+1aaaaa
+b10111 aaabx
+1aaacb
+1aaacc
+b10111 aaadl
+1aaadn
+1aaadp
+
+#162000
+0aaaaa
+
+#164000
+1aaaaa
+b10111 aaaah
+1aaabz
+1aaadj
+
+#166000
+0aaaaa
+
+#168000
+1aaaaa
+1aaabt
+0aaabz
+0aaacb
+0aaacc
+1aaacf
+0aaadj
+0aaadn
+0aaadp
+
+#170000
+0aaaaa
+
+#172000
+1aaaaa
+1aaaad
+1aaaae
+0aaaaf
+0aaaag
+b101 aaaaw
+1aaaba
+0aaabv
+0aaace
+1aaacj
+b101 aaacm
+
+#174000
+0aaaaa
+
+#176000
+1aaaaa
+0aaaaz
+b101 aaabc
+1aaabg
+1aaabi
+0aaacl
+b101 aaadf
+1aaadh
+1aaadi
+
+#178000
+0aaaaa
+
+#180000
+1aaaaa
+b1000010 aaabe
+1aaabf
+1aaadc
+b1000010 aaadd
+
+#182000
+0aaaaa
+
+#184000
+1aaaaa
+b1000010 aaaax
+1aaaaz
+b0 aaabe
+0aaabf
+0aaabg
+0aaabi
+1aaacl
+b1000010 aaaco
+0aaadc
+b0 aaadd
+0aaadh
+0aaadi
+
+#186000
+0aaaaa
+
+#188000
+1aaaaa
+0aaaad
+0aaaae
+1aaaaf
+1aaaag
+0aaaba
+b1 aaabq
+b1000010 aaabs
+1aaabv
+1aaace
+b1 aaacg
+b1000010 aaach
+0aaacj
+
+#190000
+0aaaaa
+
+#192000
+1aaaaa
+0aaabt
+b1 aaabw
+b1000010 aaabx
+1aaacb
+1aaacc
+0aaacf
+b1000010 aaadl
+b1 aaadm
+1aaadn
+1aaadp
+
+#194000
+0aaaaa
+
+#196000
+1aaaaa
+b1000010 aaaai
+1aaabz
+1aaadj
+
+#198000
+0aaaaa
+
+#200000
+1aaaaa
+1aaabt
+0aaabz
+0aaacb
+0aaacc
+1aaacf
+0aaadj
+0aaadn
+0aaadp
+
+#202000
+0aaaaa
+
+#204000
+1aaaaa
+1aaaad
+1aaaae
+0aaaaf
+0aaaag
+b110 aaaaw
+1aaaba
+0aaabv
+0aaace
+1aaacj
+b110 aaacm
+
+#206000
+0aaaaa
+
+#208000
+1aaaaa
+0aaaaz
+b110 aaabc
+1aaabg
+1aaabi
+0aaacl
+b110 aaadf
+1aaadh
+1aaadi
+
+#210000
+0aaaaa
+
+#212000
+1aaaaa
+b11 aaabe
+1aaabf
+1aaadc
+b11 aaadd
+
+#214000
+0aaaaa
+
+#216000
+1aaaaa
+b11 aaaax
+1aaaaz
+b0 aaabe
+0aaabf
+0aaabg
+0aaabi
+1aaacl
+b11 aaaco
+0aaadc
+b0 aaadd
+0aaadh
+0aaadi
+
+#218000
+0aaaaa
+
+#220000
+1aaaaa
+0aaaad
+0aaaae
+1aaaaf
+1aaaag
+0aaaba
+b10 aaabq
+b11 aaabs
+1aaabv
+1aaace
+b10 aaacg
+b11 aaach
+0aaacj
+
+#222000
+0aaaaa
+
+#224000
+1aaaaa
+0aaabt
+b10 aaabw
+b11 aaabx
+1aaacb
+1aaacc
+0aaacf
+b11 aaadl
+b10 aaadm
+1aaadn
+1aaadp
+
+#226000
+0aaaaa
+
+#228000
+1aaaaa
+b11 aaaaj
+1aaabz
+1aaadj
+
+#230000
+0aaaaa
+
+#232000
+1aaaaa
+1aaabt
+0aaabz
+0aaacb
+0aaacc
+1aaacf
+0aaadj
+0aaadn
+0aaadp
+
+#234000
+0aaaaa
+
+#236000
+1aaaaa
+1aaaab
+1aaaac
+1aaaae
+0aaaaf
+0aaaag
+1aaaal
+b1010 aaaaq
+b1 aaaas
+1aaaav
+0aaabv
+0aaace
+1aaacx
+b1010 aaacz
+b1 aaada
+
+#238000
+0aaaaa
+
+#240000
+1aaaaa
+0aaaab
+0aaaat
+b0 aaabj
+b1 aaabk
+1aaabo
+1aaabp
+b1 aaacr
+b0 aaacs
+1aaact
+1aaacv
+0aaacy
+
+#242000
+0aaaaa
+
+#244000
+1aaaaa
+b1 aaaao
+1aaabm
+1aaacp
+
+#246000
+0aaaaa
+
+#248000
+1aaaaa
+1aaaat
+0aaabm
+0aaabo
+0aaabp
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#250000
+0aaaaa
+
+#252000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaacx
+
+#253000
+1aaaac
+1aaaae
+b1011 aaaaq
+b11 aaaas
+1aaaav
+1aaacx
+b1011 aaacz
+b11 aaada
+
+#254000
+0aaaaa
+
+#256000
+1aaaaa
+0aaaat
+b1 aaabj
+b11 aaabk
+1aaabo
+1aaabp
+b11 aaacr
+b1 aaacs
+1aaact
+1aaacv
+0aaacy
+
+#258000
+0aaaaa
+
+#260000
+1aaaaa
+b11 aaaam
+1aaabm
+1aaacp
+
+#262000
+0aaaaa
+
+#264000
+1aaaaa
+1aaaat
+0aaabm
+0aaabo
+0aaabp
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#266000
+0aaaaa
+
+#268000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaacx
+
+#269000
+1aaaac
+1aaaae
+b1100 aaaaq
+b10 aaaas
+1aaaav
+1aaacx
+b1100 aaacz
+b10 aaada
+
+#270000
+0aaaaa
+
+#272000
+1aaaaa
+0aaaat
+b10 aaabj
+b10 aaabk
+1aaabo
+1aaabp
+b10 aaacr
+b10 aaacs
+1aaact
+1aaacv
+0aaacy
+
+#274000
+0aaaaa
+
+#276000
+1aaaaa
+b10 aaaan
+1aaabm
+1aaacp
+
+#278000
+0aaaaa
+
+#280000
+1aaaaa
+1aaaat
+0aaabm
+0aaabo
+0aaabp
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#282000
+0aaaaa
+
+#284000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaacx
+
+#285000
+1aaaac
+1aaaae
+b1101 aaaaq
+b1 aaaas
+1aaaav
+1aaacx
+b1101 aaacz
+b1 aaada
+
+#286000
+0aaaaa
+
+#288000
+1aaaaa
+0aaaat
+b11 aaabj
+b1 aaabk
+1aaabo
+1aaabp
+b1 aaacr
+b11 aaacs
+1aaact
+1aaacv
+0aaacy
+
+#290000
+0aaaaa
+
+#292000
+1aaaaa
+b1 aaaap
+1aaabm
+1aaacp
+
+#294000
+0aaaaa
+
+#296000
+1aaaaa
+0aaaal
+1aaaat
+b0 aaaaw
+0aaabm
+0aaabo
+0aaabp
+b0 aaabq
+b0 aaabs
+b0 aaacg
+b0 aaach
+b0 aaacm
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#298000
+0aaaaa
+
+#300000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaacx
+
+#301000
+1aaaac
+1aaaae
+b11 aaaas
+1aaaav
+1aaacx
+b11 aaada
+
+#302000
+0aaaaa
+
+#304000
+1aaaaa
+0aaaat
+b11 aaabk
+1aaabo
+1aaabp
+b11 aaacr
+1aaact
+1aaacv
+0aaacy
+
+#306000
+0aaaaa
+
+#308000
+1aaaaa
+b11 aaaap
+1aaabm
+1aaacp
+
+#310000
+0aaaaa
+
+#312000
+1aaaaa
+1aaaaf
+1aaaag
+1aaaat
+0aaabm
+0aaabo
+0aaabp
+b11 aaabq
+1aaabu
+1aaacd
+b11 aaacg
+0aaacp
+0aaact
+0aaacv
+1aaacy
+
+#314000
+0aaaaa
+
+#316000
+1aaaaa
+0aaaac
+0aaaae
+0aaaav
+0aaabt
+b11 aaabw
+b0 aaabx
+1aaaca
+1aaacc
+0aaacf
+0aaacx
+b0 aaadl
+b11 aaadm
+1aaado
+1aaadp
+
+#318000
+0aaaaa
+
+#320000
+1aaaaa
+b1011100 aaaak
+b1011100 aaaby
+1aaabz
+1aaadj
+b1011100 aaadk
+
+#322000
+0aaaaa
+
+#324000
+1aaaaa
+b1011100 aaabr
+1aaabt
+b0 aaaby
+0aaabz
+0aaaca
+0aaacc
+1aaacf
+b1011100 aaaci
+0aaadj
+b0 aaadk
+0aaado
+0aaadp
+
+#326000
+0aaaaa
+
+#327000

@@ -1,0 +1,4 @@
+./utils_tb.cpp:1: warning: "SC_DISABLE_COPYRIGHT_MESSAGE" redefined
+    1 | #define SC_DISABLE_COPYRIGHT_MESSAGE
+      | 
+<command-line>: note: this is the location of the previous definition

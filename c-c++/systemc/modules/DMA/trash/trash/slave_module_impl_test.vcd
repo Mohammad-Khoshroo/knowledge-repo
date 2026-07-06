@@ -1,0 +1,81 @@
+$date
+     Aug 02, 2025       11:55:58
+$end
+
+$version
+ SystemC 2.3.3-Accellera --- May 10 2025 20:18:16
+$end
+
+$timescale
+     1 ps
+$end
+
+$scope module SystemC $end
+$var wire    1  aaaaa  slave/ready       $end
+$var wire    1  aaaab  slave/chipSelect       $end
+$var wire    1  aaaac  slave/write       $end
+$var wire    1  aaaad  slave/read       $end
+$var wire   16  aaaae  slave/out [15:0]  $end
+$var wire   16  aaaaf  slave/input [15:0]  $end
+$var wire    8  aaaag  slave/address [7:0]  $end
+$var wire    1  aaaah  slave/clk       $end
+$upscope $end
+$enddefinitions  $end
+
+$comment
+All initial values are dumped below at time 0 sec = 0 timescale units.
+$end
+
+$dumpvars
+1aaaaa
+1aaaab
+0aaaac
+1aaaad
+b1111000011110000 aaaae
+b1111000011110000 aaaaf
+b1 aaaag
+1aaaah
+$end
+
+#5000
+0aaaah
+
+#10000
+1aaaah
+
+#15000
+0aaaab
+b1010101010101010 aaaaf
+0aaaah
+
+#20000
+b0 aaaae
+1aaaah
+
+#25000
+1aaaab
+0aaaad
+b1111111100000000 aaaaf
+0aaaah
+
+#30000
+1aaaah
+
+#35000
+1aaaad
+b111100001111 aaaaf
+0aaaah
+
+#40000
+b111100001111 aaaae
+1aaaah
+
+#45000
+b1010101010101010 aaaaf
+0aaaah
+
+#50000
+b1010101010101010 aaaae
+1aaaah
+
+#55000

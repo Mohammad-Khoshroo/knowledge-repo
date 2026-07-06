@@ -1,0 +1,64 @@
+درستش اینه:
+
+this->sensitive << this->clk.pos();
+
+نه posedge_event() و نه posedge_event، بلکه باید از clk.pos() استفاده کنی.
+دلیل:
+
+در SystemC برای تنظیم حساسیت یک SC_THREAD یا SC_METHOD نسبت به لبهٔ بالا (posedge) سیگنال clk، باید از تابع pos() استفاده کنی.
+
+this->sensitive << clk.pos();
+
+استفاده از clk.posedge_event() فقط در داخل بدنه توابع wait(...) مجاز و رایجه، مثل:
+
+wait(clk.posedge_event());
+
+پس نتیجه:
+
+در کانستراکتور:
+
+SC_THREAD(evalConfig);
+this->sensitive << this->clk.pos();  // ✅ درست
+
+در داخل بدنهٔ evalConfig اگر بخوای منتظر لبه بشی:
+
+wait(this->clk.posedge_event());  // ✅ درسته
+
+You said:
+میتونم wait رو خالی بذارم؟
+بازم بر اساس clk.pos کار میکنه؟
+ChatGPT said:
+
+نه، اگر wait(); رو خالی بذاری، فقط منتظر یک سیکل زمانی (delta cycle) می‌مونه، نه لزوماً لبهٔ clk.
+تفاوت‌ها:
+دستور	رفتار
+wait();	فقط یک delta cycle صبر می‌کنه. به هیچ سیگنالی حساس نیست.
+wait(clk.posedge_event());	تا وقتی که لبهٔ بالا (posedge) در clk رخ بده منتظر می‌مونه.
+this->sensitive << clk.pos();	برای SC_METHOD یا SC_THREAD فقط هنگام شروع (activation) استفاده می‌شه.
+مثال:
+
+SC_THREAD(my_process);
+sensitive << clk.pos(); // فقط برای شروع thread مهمه
+
+void my_process() {
+    while (true) {
+        wait(); // فقط یک بار اجرا می‌شه، چون به هیچی حساس نیست
+        do_something();
+    }
+}
+
+این کد فقط یک بار do_something رو اجرا می‌کنه، چون wait(); خالیه و لبه‌ای تعریف نشده.
+راه‌حل درست:
+
+void my_process() {
+    while (true) {
+        wait(clk.posedge_event()); // ✅ درست
+        do_something();
+    }
+}
+
+جمع‌بندی:
+
+    اگر می‌خوای فقط با clk جلو بری، همیشه بنویس: wait(clk.posedge_event());
+
+    wait(); فقط برای delta cycle هست، نه edge. پس استفاده‌ی خالی ازش برای clock-sync مناسب نیست.

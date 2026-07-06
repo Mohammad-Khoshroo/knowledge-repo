@@ -1,0 +1,5 @@
+In file included from ./utils_tb.cpp:1:
+./utils.hpp:4:10: fatal error: systemc.h: No such file or directory
+    4 | #include <systemc.h>
+      |          ^~~~~~~~~~~
+compilation terminated.
