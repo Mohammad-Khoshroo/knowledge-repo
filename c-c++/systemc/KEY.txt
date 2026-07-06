@@ -1,0 +1,205 @@
+install guid:
+
+make sure u have g++ upper than 12
+and cmake:
+
+winget install --id Kitware.CMake -e
+
+download and extract systemc
+
+cd /c/dev/systemc-2.3.4
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=C:/systemc -G "MinGW Makefiles"
+mingw32-make -j4
+mingw32-make install
+
+
+for detect systemC in  vscode u should do this:
+in vscode:
+Ctrl + Shift + P
+C/C++: Edit Configurations (UI)
+
+{
+  "configurations": [
+    {
+      "name": "Win32",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "C:/systemc/include",
+        "C:/systemc/include/sysc"
+      ],
+      "defines": [],
+      "compilerPath": "C:/mingw32/bin/g++.exe",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "windows-gcc-x64"
+    }
+  ],
+  "version": 4
+}
+
+
+for Compile:
+g++ main.cpp -o sim.exe -I"C:/systemc/include" -L"C:/systemc/lib" -lsystemc -D SC_ALLOW_DEPRECATED_IEEE_API
+
+/// Don't Forgot each systemC has a sc_main for compile
+
+
+g++ -o out ./testbench.cpp -I. -I$SYSTEMC_HOME/include -L. -L$SYSTEMC_HOME/lib-linux64 -Wl,-rpath=$SYSTEMC_HOME/lib-linux64 -lsystemc -lm
+
+
+Why do you need two wait(SC_ZERO_TIME); calls?
+    The first wait: It registers the signal changes and notifies the sensitive processes (like SC_METHODs).
+    The second wait: It gives time for those triggered methods (e.g., compute()) to actually execute and update the output.
+
+In essence:
+    First wait(SC_ZERO_TIME) → triggers the event to notify compute().
+    Second wait(SC_ZERO_TIME) → allows compute() to run and update the output signal.
+
+
+
+
+
+
+
+
+
+
+
+حتماً، یک راهنمای کامل و مرحله‌به‌مرحله برای نصب **SystemC روی WSL (Ubuntu)** و آماده کردن محیط C++ می‌دهم تا از اول تا اجرای یک برنامه تست پیش برویم:
+
+---
+
+## **مرحله ۱: نصب پیش‌نیازها**
+
+ابتدا ابزارهای لازم برای ساخت SystemC را نصب کن:
+
+```bash
+sudo apt update
+sudo apt install build-essential cmake git
+```
+
+---
+
+## **مرحله ۲: دانلود SystemC**
+
+آخرین نسخه پایدار SystemC را از سایت Accellera دانلود کن. مثلا نسخه 2.3.3:
+
+```bash
+wget https://www.accellera.org/images/downloads/standards/systemc/systemc-2.3.3.tar.gz
+tar -xvzf systemc-2.3.3.tar.gz
+cd systemc-2.3.3
+```
+
+---
+
+## **مرحله ۳: ساخت و نصب SystemC**
+
+یک پوشه برای build بساز و SystemC را کامپایل و نصب کن:
+
+```bash
+mkdir build
+cd build
+../configure --prefix=/usr/local/systemc
+make -j$(nproc)
+sudo make install
+```
+
+---
+
+## **مرحله ۴: ست کردن متغیرهای محیطی**
+
+متغیرهای محیطی را برای دسترسی راحت به SystemC تنظیم کن.
+
+### ۱. برای این ترمینال فعلی:
+
+```bash
+export SYSTEMC_HOME=/usr/local/systemc
+export LD_LIBRARY_PATH=$SYSTEMC_HOME/lib-linux64:$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=$SYSTEMC_HOME/include:$CPLUS_INCLUDE_PATH
+export LIBRARY_PATH=$SYSTEMC_HOME/lib-linux64:$LIBRARY_PATH
+```
+
+### ۲. برای دائمی شدن (در هر ترمینال):
+
+ادیت کن فایل `~/.bashrc`:
+
+```bash
+nano ~/.bashrc
+```
+
+و این خطوط را اضافه کن:
+
+```bash
+# SystemC environment
+export SYSTEMC_HOME=/usr/local/systemc
+export LD_LIBRARY_PATH=$SYSTEMC_HOME/lib-linux64:$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=$SYSTEMC_HOME/include:$CPLUS_INCLUDE_PATH
+export LIBRARY_PATH=$SYSTEMC_HOME/lib-linux64:$LIBRARY_PATH
+```
+
+سپس ذخیره و خارج شو (`Ctrl+O` → Enter → `Ctrl+X`) و اعمال کن:
+
+```bash
+source ~/.bashrc
+```
+
+تست کن:
+
+```bash
+echo $SYSTEMC_HOME
+```
+
+باید `/usr/local/systemc` چاپ شود.
+
+---
+
+## **مرحله ۵: ساخت برنامه تست**
+
+یک فایل `test.cpp` بساز:
+
+```cpp
+#include <systemc.h>
+
+int sc_main(int argc, char* argv[]) {
+    std::cout << "Hello, SystemC!" << std::endl;
+    return 0;
+}
+```
+
+---
+
+## **مرحله ۶: کامپایل برنامه**
+
+برای کامپایل باید include path و lib path درست داده شود:
+
+```bash
+g++ -I$SYSTEMC_HOME/include \
+    -I$SYSTEMC_HOME/include/sysc \
+    -L$SYSTEMC_HOME/lib-linux64 \
+    -lsystemc \
+    test.cpp -o test
+```
+
+---
+
+## **مرحله ۷: اجرا**
+
+برنامه را اجرا کن:
+
+```bash
+./test
+```
+
+اگر همه چیز درست باشد، باید پیام زیر نمایش داده شود:
+
+```
+Hello, SystemC!
+```
+
+---
+
+اگر بخواهی، می‌توانم **یک Makefile آماده** بسازم که فقط با `make` برنامه را بسازد و نیازی به تایپ دستور بلند g++ نباشد.
+
+می‌خوای همین کار را انجام دهم؟
